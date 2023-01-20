@@ -82,7 +82,9 @@ import jakarta.validation.constraints.*;
         public String getFirstname() {
             return firstname;
         }
-
+        public String getFullname() {
+            return firstname + " " + lastname;
+        }
         public void setFirstname(String firstname) {
             this.firstname = firstname;
         }

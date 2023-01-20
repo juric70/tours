@@ -21,12 +21,12 @@ public class UserController {
 
     @GetMapping("/home")
     public String listUsers(Model model){
-        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        //UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        //List<Users> listUsers = userRepository.findAll();
-        //model.addAttribute("listUsers", listUsers);
-        //model.addAttribute("userDetails", userDetails);
-        //model.addAttribute("activeLink", "Korisnici");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        List<Users> listUsers = userRepository.findAll();
+        model.addAttribute("listUsers", listUsers);
+        model.addAttribute("userDetails", userDetails);
+        model.addAttribute("activeLink", "Korisnici");
         return "home";
     }
 

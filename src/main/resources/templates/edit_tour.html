@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+  <title>Kreiranje putovanja</title>
+
+
+</head>
+<body style="background-color: #f7f1ed;">
+<div layout:fragment="content">
+
+  <div class="container vh-100">
+    <div class="row d-flex justify-content-center align-items-center h-100" >
+      <div class="card col-8 h-90 p-0" >
+        <div class="card-body text-center p-5 col-12 rounded-bottom border-top-0" style="background-color: #abced4">
+          <h2>Uredi putovanje!</h2>
+
+          <form th:action="@{/tours/update/{id}(id=${tour.id})}" th:object="${tour}" method="post">
+
+            <div class="m-3">
+              <div class="form-group row my-2">
+                <label class="col-12 col-form-label">Mjesto putovanja: </label>
+                <div class="col-12">
+                  <input  style="background-color: #f0e3db;" th:unless="${#fields.hasErrors('title')}" type="text" th:field="*{title}" class="form-control"/>
+                  <input  style="background-color: #f0e3db;" th:if="${#fields.hasErrors('title')}" type="text" th:field="*{title}"
+                          class="form-control  is-invalid"/>
+                  <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="form-group row my-2">
+                <label class="col-12 col-form-label">Opis putovanja: </label>
+                <div class="col-12">
+                  <input  style="background-color: #f0e3db;" th:unless="${#fields.hasErrors('description')}" type="text" th:field="*{description}" class="form-control"/>
+                  <input  style="background-color: #f0e3db;" th:if="${#fields.hasErrors('description')}" type="text" th:field="*{description}"
+                          class="form-control  is-invalid"/>
+                  <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="form-group row my-2">
+                <label class="col-12 col-form-label">Polazak na putovanje: </label>
+                <div class="col-12">
+                  <input  style="background-color: #f0e3db;" th:unless="${#fields.hasErrors('start_date')}" type="date" th:field="*{start_date}" class="form-control"/>
+                  <input  style="background-color: #f0e3db;" th:if="${#fields.hasErrors('start_date')}" type="date" th:field="*{start_date}"
+                          class="form-control  is-invalid"/>
+                  <div th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}" class="invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="form-group row my-2">
+                <label class="col-12 col-form-label">Povratak sa putovanja: </label>
+                <div class="col-12">
+                  <input  style="background-color: #f0e3db;"  th:unless="${#fields.hasErrors('end_date')}" type="date" th:field="*{end_date}" class="form-control"/>
+                  <input   style="background-color: #f0e3db;" th:if="${#fields.hasErrors('end_date')}" type="date" th:field="*{end_date}"
+                           class="form-control  is-invalid"/>
+                  <div th:if="${#fields.hasErrors('end_date')}" th:errors="*{end_date}" class="invalid-feedback"></div>
+                </div>
+              </div>
+
+
+              <div class="my-2">
+                <button type="submit" class="btn btn-block btn-primary" style="width: 100%; border: #0C5A67; background-color: #0C5A67;">Kreiraj putovanje!</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div></div></div>
+
+
+
+</body>
+</html>

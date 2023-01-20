@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <title>Bootstrap Example</title>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Title</title>
-    <script src="components/header.js"></script>
+     <title>Title</title>
+
 
 </head>
 <body style="background-color: #f7f1ed;">
-<header-component></header-component>
+<div layout:fragment="content">
+    <h1>na home pageu si :)</h1>
+</div>
 
-<h1>na home pageu si :)</h1>
+
 </body>
 </html>
