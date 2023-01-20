@@ -3,8 +3,9 @@
 <head>
     <title>Putovanja</title>
     <style>
+
         h1, th, td{
-            color: #083b44;
+            color: #0C5A67;
         }
         thead{
             background-color: #dabaa4;
@@ -28,6 +29,7 @@
             <th>Opis</th>
             <th>Datum polaska</th>
             <th>Datum povratka</th>
+            <th>Cijena putovanja</th>
             <th>Datum objave</th>
             <th>Kreator objave</th>
             <th class="text-center" colspan="2" >Akcije</th>
@@ -40,6 +42,7 @@
             <td th:text="${tour.description}">Opis</td>
             <td th:text="${tour.start_date}">Datum polaska</td>
             <td th:text="${tour.end_date}">Datum povratka</td>
+            <td th:text="${tour.price}">Cijena putovanja</td>
             <td th:text="${tour.upload_date}">Datum objave</td>
             <td th:text="${tour.creator.getFullname()}">Kreator objave</td>
 

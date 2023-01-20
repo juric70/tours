@@ -30,12 +30,16 @@
               <div class="form-group row my-2">
                 <label class="col-12 col-form-label">Opis putovanja: </label>
                 <div class="col-12">
-                  <input  style="background-color: #f0e3db;" th:unless="${#fields.hasErrors('description')}" type="text" th:field="*{description}" class="form-control"/>
-                  <input  style="background-color: #f0e3db;" th:if="${#fields.hasErrors('description')}" type="text" th:field="*{description}"
-                          class="form-control  is-invalid"/>
+                  <textarea  style="background-color: #f0e3db;" th:unless="${#fields.hasErrors('description')}" type="text" th:field="*{description}" class="form-control" rows="5" ></textarea>
+                  <textarea  style="background-color: #f0e3db;" th:if="${#fields.hasErrors('description')}" type="text" th:field="*{description}" rows="5"
+                          class="form-control  is-invalid"/></textarea>
                   <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="invalid-feedback"></div>
                 </div>
               </div>
+
+
+
+
 
               <div class="form-group row my-2">
                 <label class="col-12 col-form-label">Polazak na putovanje: </label>
@@ -57,9 +61,19 @@
                 </div>
               </div>
 
+              <div class="form-group row my-2">
+                <label class="col-12 col-form-label">Cijena putovanja: </label>
+                <div class="col-12">
+                  <input  style="background-color: #f0e3db;"  th:unless="${#fields.hasErrors('price')}" type="number" th:field="*{price}" class="form-control"/>
+                  <input   style="background-color: #f0e3db;" th:if="${#fields.hasErrors('price')}" type="number" th:field="*{price}"
+                           class="form-control  is-invalid"/>
+                  <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="invalid-feedback"></div>
+                </div>
+              </div>
+
 
               <div class="my-2">
-                <button type="submit" class="btn btn-block btn-primary" style="width: 100%; border: #0C5A67; background-color: #0C5A67;">Kreiraj putovanje!</button>
+                <button type="submit" class="btn btn-block btn-primary" style="width: 100%; border: #0C5A67; background-color: #0C5A67;">Uredi putovanje!</button>
               </div>
             </div>
           </form>

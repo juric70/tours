@@ -22,7 +22,7 @@
 <body style="background-color: #f7f1ed;">
 <nav class="navbar navbar-expand-lg navbar-light p-1 " style="background-color: #0C5A67;">
     <div class="container-fluid">
-        <a class="navbar-brand" th:class="${#strings.equals(activeLink, 'Početna stranica')} ? 'navbar-brand active' : 'navbar-brand'" href="/home">Small travle</a>
+        <a class="navbar-brand" th:class="${#strings.equals(activeLink, 'Small travel')} ? 'navbar-brand active' : 'navbar-brand'" href="/home">Small travel</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,7 +47,9 @@
                     <ul class="dropdown-menu mt-3"  aria-labelledby="navbarDropdownMenuLink" style="background-color: #e9d6c9;">
                         <form th:action="@{/logout}" method="post">
                             <input type="submit" class="dropdown-item" style="text-align: center;background: #e9d6c9;border: 0;" value="Odjavi se!">
+                            <a class="dropdown-item" style="text-align: center;background: #e9d6c9;border: 0;"  th:href="@{/profile/{id}(id=${userDetails.getId()})}">Profile </a>
                         </form>
+
                     </ul>
                 </li>
             </ul>

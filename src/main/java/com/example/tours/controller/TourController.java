@@ -32,6 +32,11 @@ public class TourController {
         UserDetails userDetails =(UserDetails) authentication.getPrincipal();
         model.addAttribute("userDetails", userDetails);
         List<Tour> listTours = tourRepository.findAll();
+        for ( Tour tour: listTours) {
+            if(tour.getDescription().length() > 150) {
+                tour.setDescription(tour.getDescription().substring(0, 150) + "  ... ");
+            }
+        }
         model.addAttribute("listTours", listTours);
         model.addAttribute("activeLink", "Putovanja");
         return "tours";
@@ -44,8 +49,7 @@ public class TourController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails =(UserDetails) authentication.getPrincipal();
         model.addAttribute("userDetails", userDetails);
-        List<Tour> listTours = tourRepository.findAll();
-        model.addAttribute("listTours", listTours);
+        model.addAttribute("tour",tour );
         model.addAttribute("activeLink", "Putovanja");
         return "tour";
     }

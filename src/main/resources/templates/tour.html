@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    *{
+      color: #0C5A67;
+
+    }
+    body, .card{
+      background-color: #f7f1ed;
+      border: 0;
+    }
+    tr{
+      border:0px;
+      border-color: #dabaa4;
+    }
+    th{
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="container">
+    <div class="row d-flex  h-100" >
+      <div class="card col-12 h-100 px-5 " >
+
+        <form th:action="@{/tour/{id}(id=${tour.id})}" th:object="${tour}" method="post">
+          <h1 th:text="${tour.title}" class="text-center mt-3"></h1>
+        <table class="table">
+          <tbody>
+          <tr>
+            <th scope="row">Datum početka putovanja:</th>
+            <td th:text="${tour.start_date}"></td>
+          </tr>
+          <tr>
+            <th scope="row">Datum povratka sa putovanja: </th>
+            <td th:text="${tour.end_date}"></td>
+          </tr>
+          <tr>
+            <th scope="row">Opis putovanja: </th>
+            <td th:text="${tour.description}"></td>
+          </tr>
+          <tr>
+            <th scope="row">Cijena:</th>
+            <td th:text="${tour.price}"></td>
+          </tr>
+          <tr>
+            <th scope="row">objavljeno:</th>
+            <td th:text="${tour.upload_date}"></td>
+          </tr>
+          </tbody>
+        </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

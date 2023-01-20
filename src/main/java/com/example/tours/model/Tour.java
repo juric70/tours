@@ -19,7 +19,7 @@ public class Tour {
     @NotBlank(message = "Molimo Vas da unesete naslov putovanja!")
     String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10000)
     @NotBlank(message = "Molimo Vas unesite opis putovanja!")
     String description;
 
@@ -34,12 +34,13 @@ public class Tour {
     @NotBlank(message = "Molimo Vas unesite datum završetka putovanja!")
     String end_date;
 
+    @Column(nullable = false)
+    int price;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "users_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Users creator;
-
-
 
     public Long getId() {
         return id;
@@ -89,6 +90,14 @@ public class Tour {
         this.end_date = end_date;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public Users getCreator() {
         return creator;
     }
@@ -96,14 +105,16 @@ public class Tour {
     public void setCreator(Users creator) {
         this.creator = creator;
     }
+
     public Tour(){};
-    public Tour(Long id, String title, String description, String upload_date, String start_date, String end_date, Users creator) {
+    public Tour(Long id, String title, String description, String upload_date, String start_date, String end_date, int price, Users creator) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.upload_date = upload_date;
         this.start_date = start_date;
         this.end_date = end_date;
+        this.price = price;
         this.creator = creator;
     }
 }
