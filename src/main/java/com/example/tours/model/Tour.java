@@ -19,6 +19,10 @@ public class Tour {
     @NotBlank(message = "Molimo Vas da unesete naslov putovanja!")
     String title;
 
+    @Column(nullable = false)
+    @NotBlank(message = "Molimo Vas da unesete odredište putovanja!")
+    String location;
+
     @Column(nullable = false, length = 10000)
     @NotBlank(message = "Molimo Vas unesite opis putovanja!")
     String description;
@@ -56,6 +60,14 @@ public class Tour {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getDescription() {
@@ -105,11 +117,11 @@ public class Tour {
     public void setCreator(Users creator) {
         this.creator = creator;
     }
-
-    public Tour(){};
-    public Tour(Long id, String title, String description, String upload_date, String start_date, String end_date, int price, Users creator) {
+    public Tour (){}
+    public Tour(Long id, String title, String location, String description, String upload_date, String start_date, String end_date, int price, Users creator) {
         this.id = id;
         this.title = title;
+        this.location = location;
         this.description = description;
         this.upload_date = upload_date;
         this.start_date = start_date;

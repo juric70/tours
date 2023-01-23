@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
+
 @Controller
 public class AuthController {
 
@@ -36,6 +38,9 @@ public class AuthController {
         String encodedPassword = passwordEncoder.encode(users.getPassword());
         users.setPasswordRepeat(encodedPassword);
         users.setPassword(encodedPassword);
+        users.setDateOfCreation(LocalDate.now().toString());
+        users.setRoleId(1);
+        users.setDeleted(false);
         userRepository.save(users);
         return "login_form";
     }

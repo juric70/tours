@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+  <style>
+    *{
+      color: #0C5A67;
+
+    }
+    body, .card{
+      background-color: #e9d6c9;
+      border: 0;
+    }
+    tr{
+      border:0px;
+      border-color: #dabaa4;
+    }
+  </style>
+</head>
+<body>
+<div layout:fragment="content">
+<div class="container">
+  <div class="row d-flex  h-100" >
+    <div class="card col-12 h-100 p-5 " >
+      <div id="profileImg" class="text-center">
+        <img src="" class="img-thumbnail rounded-circle" alt="" style="background-color: #083b44; width: 200px; height: 200px;">
+      </div>
+      <div id="profileData">
+        <form th:action="@{/tour/{id}(id=${users.getId()})}" th:object="${users}" method="post">
+          <table class="table">
+            <tbody>
+            <tr>
+              <th scope="row">Ime i prezime:</th>
+              <td th:text="${users.getFullname()}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Email adresa: </th>
+              <td th:text="${users.getEmail()}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Spol: </th>
+              <td th:text="${users.getGender()}">-</td>
+            </tr>
+            <tr>
+              <th scope="row">Datum rođenja</th>
+              <td th:text="${users.dateOfBirth}">-</td>
+            </tr>
+            <tr>
+              <th scope="row">Datum kreiranja profila:</th>
+              <td th:text="${users.dateOfCreation}">2.03.2022</td>
+            </tr>
+            </tbody>
+          </table>
+          <div id="editAndDeleteProfile" class="d-flex justify-content-between">
+            <a th:href="@{/profile/edit/{id}(id=${users.id})}" class="btn btn-outline-primary" style="color: #dabaa4; border: #0C5A67; background-color: #0C5A67;">Uredi profil</a>
+            <a th:href="@{/profile/delete/{id}(id=${users.id})}" class="btn btn-outline-primary" style="color: #dabaa4; border: #0C5A67; background-color: #0C5A67;">Obriši profil</a>
+          </div>
+        </form>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
+</html>

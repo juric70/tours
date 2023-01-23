@@ -44,16 +44,24 @@ import jakarta.validation.constraints.*;
         @Column(nullable = false, length = 30)
         private String lastname;
 
-        public Users() {}
+        @Column()
+        private String gender;
 
-        public Users(Long id, String email, String password, String firstname, String lastname) {
-            this.id = id;
-            this.email = email;
-            this.password = password;
-            this.firstname = firstname;
-            this.lastname = lastname;
-        }
+        @Column(nullable = false)
+        private int roleId;
+        //if roleId == 1 role = user
+        //if roleId == 2 role = admin
 
+        @Column()
+        private String dateOfBirth;
+
+
+        @Column(nullable = false)
+        private boolean  isDeleted;
+
+
+        @Column(nullable = false)
+        private String dateOfCreation;
 
         public Long getId() {
             return id;
@@ -82,9 +90,7 @@ import jakarta.validation.constraints.*;
         public String getFirstname() {
             return firstname;
         }
-        public String getFullname() {
-            return firstname + " " + lastname;
-        }
+
         public void setFirstname(String firstname) {
             this.firstname = firstname;
         }
@@ -96,6 +102,63 @@ import jakarta.validation.constraints.*;
         public void setLastname(String lastname) {
             this.lastname = lastname;
         }
+
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public int getRoleId() {
+            return roleId;
+        }
+
+        public void setRoleId(int roleId) {
+            this.roleId = roleId;
+        }
+
+        public String getDateOfBirth() {
+            return dateOfBirth;
+        }
+
+        public void setDateOfBirth(String dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        public boolean isDeleted() {
+            return isDeleted;
+        }
+
+        public void setDeleted(boolean deleted) {
+            isDeleted = deleted;
+        }
+
+        public String getDateOfCreation() {
+            return dateOfCreation;
+        }
+
+        public void setDateOfCreation(String dateOfCreation) {
+            this.dateOfCreation = dateOfCreation;
+        }
+
+        public String getFullname(){return this.getFirstname() + " " + this.getLastname();}
+        public Users(Long id, String email, String password, String passwordRepeat, boolean passwordsEqual, String firstname, String lastname, String gender, int roleId, String dateOfBirth, boolean isDeleted, String dateOfCreation) {
+            this.id = id;
+            this.email = email;
+            this.password = password;
+            this.passwordRepeat = passwordRepeat;
+            this.passwordsEqual = passwordsEqual;
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.gender = gender;
+            this.roleId = roleId;
+            this.dateOfBirth = dateOfBirth;
+            this.isDeleted = isDeleted;
+            this.dateOfCreation = dateOfCreation;
+        }
+        public Users(){}
 
         @AssertTrue(message="Lozinke se moraju podudarati.")
         public boolean isPasswordsEqual () {
