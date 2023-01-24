@@ -4,6 +4,7 @@ import com.example.tours.model.Tour;
 import com.example.tours.model.UserDetails;
 import com.example.tours.model.Users;
 import com.example.tours.repositories.UserRepository;
+import jakarta.jws.soap.SOAPBinding;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -51,7 +52,8 @@ public class UserController {
 
     @GetMapping("profile/edit/{id}")
     public String updateUserForm(@PathVariable("id") long id, Model model){
-        Users users = userRepository.findById(id)
+        Users users = userRepository.
+                findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Greška!"));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails =(UserDetails) authentication.getPrincipal();
@@ -62,7 +64,8 @@ public class UserController {
     }
 
     @PostMapping("profile/update/{id}")
-    public String updateUser(@PathVariable("id") long id, @Valid Users users, BindingResult result, Model model){
+    public String   updateUser(@PathVariable("id") long id, @Valid Users users, BindingResult result, Model model){
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails =(UserDetails) authentication.getPrincipal();
         model.addAttribute("userDetails", userDetails);
@@ -73,7 +76,6 @@ public class UserController {
             model.addAttribute("users", users);
             return "edit_profile";
         }
-
         users.setDateOfCreation(LocalDate.now().toString());
         users.setRoleId(1);
         users.setDeleted(false);

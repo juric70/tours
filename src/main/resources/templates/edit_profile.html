@@ -49,6 +49,21 @@
                       <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
                     </div>
                   </div>
+                  <div class="m-3">
+                    <div class="form-group row my-2">
+                      <label class="col-12 col-form-label">Spol : </label>
+                      <div class="col-12">
+                        <select class="form-select" aria-label="Default select example" th:field="*{gender}" >
+                          <option selected value="">Spol</option>
+                          <option th:value="Man">Man</option>
+                          <option th:value="Woman">Woman</option>
+                          <option th:value="Other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+
+
 
 
 

@@ -2,8 +2,10 @@ package com.example.tours.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.hibernate.annotations.DynamicUpdate;
 
-    @Entity
+@Entity
+    @DynamicUpdate
     @Table(name="users")
     public class Users {
         @Id
