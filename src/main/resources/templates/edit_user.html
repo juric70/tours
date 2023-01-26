@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Kompas</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div class="container vh-100">
+    <div class="row d-flex justify-content-center align-items-center h-100" >
+      <div class="card col-8 h-90 p-0" >
+        <div class="card-body text-center p-5 col-12 rounded-bottom border-top-0" style="background-color: #abced4">
+          <h2>Uredi Korisnika!</h2>
+
+          <form th:action="@{/user/update/{id}(id=${users.id})}" th:object="${users}" method="post">
+
+            <div class="m-3">
+                  <div class="m-3">
+                    <div class="form-group row my-2">
+                      <label class="col-12 col-form-label">Rola: </label>
+                      <div class="col-12">
+                        <select class="form-select" aria-label="Default select example" th:field="*{roleId}" >
+                          <option th:value="1">User</option>
+                          <option th:value="2">Admin</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="my-2">
+                      <button type="submit" class="btn btn-block btn-primary" style="width: 100%; border: #0C5A67; background-color: #0C5A67;">Uredi korisnikovu rolu!</button>
+                    </div>
+
+                  </div>
+                </div>
+          </form>
+
+        </div>
+      </div>
+    </div></div></div>
+
+
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.example.tours.controller;
 
+import com.example.tours.model.Tour;
 import com.example.tours.model.Users;
+import com.example.tours.repositories.TourRepository;
 import com.example.tours.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class AuthController {
@@ -19,9 +22,15 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
+
+
+
     @GetMapping("/")
     public String home(Model model){
-        return "redirect:home";
+
+
+        model.addAttribute("activeLink", "Početna stranica");
+        return "home";
     }
     @GetMapping("/register")
     public String registerForm(Model model){

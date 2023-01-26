@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <title>Register - Tours</title>
+  <title>Kompas</title>
 
   <style>
     *{
@@ -17,38 +17,36 @@
   <div class="row d-flex justify-content-center align-items-center h-100">
     <div  class="col-8 h-80" >
       <div class="card h-100" >
-        <div class="col-12 h-50 p-5 rounded-top border-bottom-0"style=" background-image: url('https://www.state.gov/wp-content/uploads/2020/11/shutterstock_186964970-scaled.jpg'); background-position: center;background-size: cover; background-repeat: no-repeat">
 
+        <div class="col-12 h-50 p-5 rounded-top border-bottom-0"style=" background-image: url('https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-position: center;background-size: cover; background-repeat: no-repeat">
           <h2 style="padding: 5% 0 2% 0;">Dobrodošli na našu aplikaciju za putovanja</h2>
           <p>epoedjafkrefsverqfcerferqferwfew</p>
         </div>
+
         <div class="card-body text-center px-5 py-0 col-12 rounded-bottom border-top-0" style="background-color: #abced4">
           <h2>Registriraj se!</h2>
-
           <form th:action="@{/register_user}" th:object="${users}" method="post">
-
-
             <div class="m-3">
               <div class="form-group row my-2">
                 <div class="col-12">
-                  <input th:unless="${#fields.hasErrors('firstname')}" type="text" th:field="*{firstname}" class="form-control" placeholder="Ime" />
-                  <input th:if="${#fields.hasErrors('firstname')}" type="text" th:field="*{firstname}" class="form-control  is-invalid"  placeholder="Ime" />
+                  <input th:unless="${#fields.hasErrors('firstname')}" type="text" th:field="*{firstname}" class="form-control" placeholder="Ime"  style="background-color: #f0e3db;" />
+                  <input th:if="${#fields.hasErrors('firstname')}" type="text" th:field="*{firstname}" class="form-control  is-invalid"  placeholder="Ime"  style="background-color: #f0e3db;" />
                   <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="invalid-feedback"></div>
                 </div>
               </div>
 
               <div class="form-group row my-2">
                 <div class="col-12">
-                  <input th:unless="${#fields.hasErrors('lastname')}" type="text" th:field="*{lastname}" class="form-control" placeholder="Prezime" />
-                  <input th:if="${#fields.hasErrors('lastname')}" type="text" th:field="*{lastname}" class="form-control  is-invalid"  placeholder="Prezime" />
+                  <input th:unless="${#fields.hasErrors('lastname')}" type="text" th:field="*{lastname}" class="form-control" placeholder="Prezime"  style="background-color: #f0e3db;" />
+                  <input th:if="${#fields.hasErrors('lastname')}" type="text" th:field="*{lastname}" class="form-control  is-invalid"  placeholder="Prezime"  style="background-color: #f0e3db;" />
                   <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="invalid-feedback"></div>
                 </div>
               </div>
 
               <div class="form-group row my-2">
                 <div class="col-12">
-                  <input th:unless="${#fields.hasErrors('email')}" type="email" th:field="*{email}" class="form-control" placeholder="Email" />
-                  <input th:if="${#fields.hasErrors('email')}" type="email" th:field="*{email}" class="form-control  is-invalid"  placeholder="Email" />
+                  <input th:unless="${#fields.hasErrors('email')}" type="email" th:field="*{email}" class="form-control" placeholder="Email"  style="background-color: #f0e3db;" />
+                  <input th:if="${#fields.hasErrors('email')}" type="email" th:field="*{email}" class="form-control  is-invalid"  placeholder="Email"  style="background-color: #f0e3db;" />
                   <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
                 </div>
               </div>
@@ -57,27 +55,21 @@
 
               <div class="form-group row my-2">
                 <div class="col-12">
-                  <input th:unless="${#fields.hasErrors('password')}" type="password" th:field="*{password}" class="form-control" placeholder="Lozinka" />
-                  <input th:if="${#fields.hasErrors('password')}" type="password" th:field="*{password}" class="form-control  is-invalid"  placeholder="Lozinka" />
+                  <input th:unless="${#fields.hasErrors('password')}" type="password" th:field="*{password}" class="form-control" placeholder="Lozinka"  style="background-color: #f0e3db;" />
+                  <input th:if="${#fields.hasErrors('password')}" type="password" th:field="*{password}" class="form-control  is-invalid"  placeholder="Lozinka"  style="background-color: #f0e3db;" />
                   <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
                 </div>
               </div>
 
               <div class="form-group row my-2">
                 <div class="col-12">
-                  <input th:unless="${#fields.hasErrors('passwordsEqual') or #fields.hasErrors('passwordRepeat')}" type="password" th:field="*{passwordRepeat}" class="form-control" placeholder="Ponovan unos lozinke"/>
-                  <input th:if="${#fields.hasErrors('passwordsEqual')}" type="password" th:field="*{passwordRepeat}" class="form-control is-invalid" placeholder="Ponovan unos lozinke" />
+                  <input th:unless="${#fields.hasErrors('passwordsEqual') or #fields.hasErrors('passwordRepeat')}" type="password" th:field="*{passwordRepeat}" class="form-control" placeholder="Ponovan unos lozinke"  style="background-color: #f0e3db;" />
+                  <input th:if="${#fields.hasErrors('passwordsEqual')}" type="password" th:field="*{passwordRepeat}" class="form-control is-invalid" placeholder="Ponovan unos lozinke"  style="background-color: #f0e3db;" />
                   <div th:if="${#fields.hasErrors('passwordsEqual')}" th:errors="*{passwordsEqual}" class="invalid-feedback"></div>
-                  <input th:if="${#fields.hasErrors('passwordRepeat')}" type="password" th:field="*{passwordRepeat}" class="form-control is-invalid" placeholder="Ponovan unos lozinke"/>
+                  <input th:if="${#fields.hasErrors('passwordRepeat')}" type="password" th:field="*{passwordRepeat}" class="form-control is-invalid" placeholder="Ponovan unos lozinke"  style="background-color: #f0e3db;" />
                   <div th:if="${#fields.hasErrors('passwordRepeat')}" th:errors="*{passwordRepeat}" class="invalid-feedback"></div>
                 </div>
               </div>
-
-
-
-
-
-
 
               <div class="my-2">
                 <button type="submit" class="btn btn-block btn-primary" style="width: 100%; border: #0C5A67; background-color: #0C5A67;">Registriraj se</button>

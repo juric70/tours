@@ -2,7 +2,7 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Knjižnica</title>
+    <title>Kompas</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
           integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
@@ -20,29 +20,38 @@
 
 </head>
 <body style="background-color: #f7f1ed;">
-<nav class="navbar navbar-expand-lg navbar-light p-1 " style="background-color: #0C5A67;">
+<nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #0C5A67; padding: 0">
     <div class="container-fluid">
-        <a class="navbar-brand" th:class="${#strings.equals(activeLink, 'Small travel')} ? 'navbar-brand active' : 'navbar-brand'" href="/home">Small travel</a>
+        <a class="navbar-brand " th:class="${#strings.equals(activeLink, 'Kompas')} ? 'navbar-link active p-3 fw-bold text-rest' : 'navbar-link p-3 fw-bold text-rest'" href="/home">Kompas</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="/tours" th:class="${#strings.equals(activeLink, 'Putovanja')} ? 'nav-link active' : 'nav-link'">Putovanja</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/tours" th:class="${#strings.equals(activeLink, 'Putovanja')} ? 'nav-link active p-3' : 'nav-link p-3'">Putovanja</a>
                 </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="#">Kalendar</a>
+                <li class="nav-item " th:if="${userDetails.getRole() == 2}">
+                    <a class="nav-link" href="/users"  th:class="${#strings.equals(activeLink, 'Korisnici')} ? 'nav-link active p-3' : 'nav-link p-3'">Korisnici</a>
                 </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="#">O nama</a>
+                <li class="nav-item " th:if="${userDetails.getRole() == 2}">
+                    <a class="nav-link" href="/allreservations" th:class="${#strings.equals(activeLink, 'Sve rezervacije')} ? 'nav-link active p-3' : 'nav-link p-3'">Sve rezervacije</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/reservations"  th:class="${#strings.equals(activeLink, 'Moje rezervacije')} ? 'nav-link active p-3' : 'nav-link p-3'">Moje rezervacije</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link p-3" href="#">Kalendar</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link p-3" href="#">O nama</a>
                 </li>
             </ul>
             <ul class="navbar-nav " >
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                       th:text="${userDetails.getFullName()}">
+                    <a class="nav-link dropdown-toggle p-3" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                       th:text="${userDetails.getFullName()}" >
                     </a>
                     <ul class="dropdown-menu mt-3"  aria-labelledby="navbarDropdownMenuLink" style="background-color: #e9d6c9;">
                         <form th:action="@{/logout}" method="post">
@@ -58,22 +67,26 @@
 </nav>
 <div layout:fragment="content"> </div>
 <style>
+
+    .navbar-light .navbar-nav>li>a {
+        color: #dabaa4;
+    }
     .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
         background-color: #083b44;
         color: #ead8cc;
     }
-    .navbar-light .navbar-nav>li>a {
+    a{
+        text-decoration: none;
         color: #dabaa4;
     }
-
     .navbar-light .navbar-nav>li>a:focus, .navbar-light .navbar-nav>li>a:hover,.navbar-light .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
         color: #ead8cc;
         background-color: #083b44;
     }
-    .navbar-light .navbar-brand {
+    .navbar-light .nav-link {
         color: #dabaa4;
     }
-    .navbar-light .navbar-brand:focus,  .navbar-light .navbar-brand:hover {
+    .navbar-light .nav-link:focus,  .navbar-light .nav-link:hover {
         color: #ead8cc;
         background-color: #083b44;
     }

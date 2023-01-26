@@ -46,7 +46,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
     }
 
     public String getFullName(){return users.getFirstname() + " " + users.getLastname() ;}
-
+    public int getRole(){return users.getRoleId();}
 
     public Users getUsers(){return users;}
     public Long getId(){return users.getId();}

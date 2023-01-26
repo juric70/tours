@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kompas</title>
   <style>
     *{
       color: #0C5A67;
@@ -32,6 +32,10 @@
         <table class="table">
           <tbody>
           <tr>
+            <th scope="row">Lokacija putovanja:</th>
+            <td th:text="${tour.location}"></td>
+          </tr>
+          <tr>
             <th scope="row">Datum početka putovanja:</th>
             <td th:text="${tour.start_date}"></td>
           </tr>
@@ -53,6 +57,7 @@
           </tr>
           </tbody>
         </table>
+          <a  th:href="@{/reservation/add/{tour_id}(tour_id=${tour.id})}" onclick="return alert('Putovanje uspješno rezervirano!');" class="btn btn-outline-primary px-5 float-end" style="color: #dabaa4; border: #0C5A67; background-color: #0C5A67;" >Rezerviraj putovanje!</a>
         </form>
       </div>
     </div>

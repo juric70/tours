@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kompas</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -12,7 +12,7 @@
     <div class="row d-flex justify-content-center align-items-center h-100" >
       <div class="card col-8 h-90 p-0" >
         <div class="card-body text-center p-5 col-12 rounded-bottom border-top-0" style="background-color: #abced4">
-          <h2>Uredi putovanje!</h2>
+          <h2>Uredi profil!</h2>
 
           <form th:action="@{/profile/update/{id}(id=${users.id})}" th:object="${users}" method="post">
 
@@ -28,7 +28,7 @@
                 </div>
               </div>
 
-              <div class="m-3">
+
                 <div class="form-group row my-2">
                   <label class="col-12 col-form-label">Prezime : </label>
                   <div class="col-12">
@@ -39,7 +39,7 @@
                   </div>
                 </div>
 
-                <div class="m-3">
+
                   <div class="form-group row my-2">
                     <label class="col-12 col-form-label">E-mail : </label>
                     <div class="col-12">
@@ -49,11 +49,12 @@
                       <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
                     </div>
                   </div>
-                  <div class="m-3">
+
+
                     <div class="form-group row my-2">
                       <label class="col-12 col-form-label">Spol : </label>
                       <div class="col-12">
-                        <select class="form-select" aria-label="Default select example" th:field="*{gender}" >
+                        <select class="form-select" aria-label="Default select example" th:field="*{gender}" style="background-color: #f0e3db;"  >
                           <option selected value="">Spol</option>
                           <option th:value="Man">Man</option>
                           <option th:value="Woman">Woman</option>
@@ -72,9 +73,8 @@
                 <div class="form-group row my-2">
                   <label class="col-12 col-form-label">Datum Rođenja: </label>
                   <div class="col-12">
-                    <input  style="background-color: #f0e3db;" th:unless="${#fields.hasErrors('dateOfBirth')}" type="date" th:field="*{dateOfBirth}" class="form-control"/>
-                    <input  style="background-color: #f0e3db;" th:if="${#fields.hasErrors('dateOfBirth')}" type="date" th:field="*{dateOfBirth}"
-                            class="form-control  is-invalid"/>
+                    <input  style="background-color: #f0e3db;" th:unless="${#fields.hasErrors('dateOfBirth')}" type="date" th:field="*{dateOfBirth}" class="form-control" value="."/>
+                    <input  style="background-color: #f0e3db;" th:if="${#fields.hasErrors('dateOfBirth')}" type="date" th:field="*{dateOfBirth}" value="." class="form-control  is-invalid"/>
                     <div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="invalid-feedback"></div>
                   </div>
                 </div>

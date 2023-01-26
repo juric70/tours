@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
-<title>Kreiranje putovanja</title>
+<title>Kompas</title>
 <script src="https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json"></script>
 
 </head>
@@ -25,9 +25,9 @@
                          class="form-control  is-invalid"/>
                   <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="invalid-feedback"></div>
                 </div>
-
               </div>
-                <div class="m-3">
+
+
                   <div class="form-group row my-2">
                     <label class="col-12 col-form-label">Mjesto putovanja: </label>
                     <div class="col-12">

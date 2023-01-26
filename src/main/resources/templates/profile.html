@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kompas</title>
 
   <style>
     *{
@@ -23,7 +23,7 @@
 <div layout:fragment="content">
 <div class="container">
   <div class="row d-flex  h-100" >
-    <div class="card col-12 h-100 p-5 " >
+    <div class="card col-12 h-100 p-5 my-5 " >
       <div id="profileImg" class="text-center">
         <img src="" class="img-thumbnail rounded-circle" alt="" style="background-color: #083b44; width: 200px; height: 200px;">
       </div>
@@ -55,7 +55,7 @@
           </table>
           <div id="editAndDeleteProfile" class="d-flex justify-content-between">
             <a th:href="@{/profile/edit/{id}(id=${users.id})}" class="btn btn-outline-primary" style="color: #dabaa4; border: #0C5A67; background-color: #0C5A67;">Uredi profil</a>
-            <a th:href="@{/profile/delete/{id}(id=${users.id})}" class="btn btn-outline-primary" style="color: #dabaa4; border: #0C5A67; background-color: #0C5A67;">Obriši profil</a>
+            <a th:href="@{/profile/delete/{id}(id=${users.id})}" class="btn btn-outline-primary" onclick="return confirm('Are you sure?')" style="color: #dabaa4; border: #0C5A67; background-color: #0C5A67;">Obriši profil</a>
           </div>
         </form>
 

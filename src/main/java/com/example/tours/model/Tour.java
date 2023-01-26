@@ -46,6 +46,30 @@ public class Tour {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Users creator;
 
+    @Column()
+    private int rating;
+
+    @Column()
+    private int numb_of_ratings;
+
+
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int getNumb_of_ratings() {
+        return numb_of_ratings;
+    }
+
+    public void setNumb_of_ratings(int numb_of_ratings) {
+        this.numb_of_ratings = numb_of_ratings;
+    }
+
     public Long getId() {
         return id;
     }
@@ -118,7 +142,7 @@ public class Tour {
         this.creator = creator;
     }
     public Tour (){}
-    public Tour(Long id, String title, String location, String description, String upload_date, String start_date, String end_date, int price, Users creator) {
+    public Tour(Long id, String title, String location, String description, String upload_date, String start_date, String end_date, int price, Users creator, int rating, int numb_of_ratings) {
         this.id = id;
         this.title = title;
         this.location = location;
@@ -128,5 +152,7 @@ public class Tour {
         this.end_date = end_date;
         this.price = price;
         this.creator = creator;
+        this.rating = rating;
+        this.numb_of_ratings = numb_of_ratings;
     }
 }
