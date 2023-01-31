@@ -60,4 +60,6 @@ public class AuthController {
         model.addAttribute("user", new Users());
         return "login_form";
     }
+
+
 }

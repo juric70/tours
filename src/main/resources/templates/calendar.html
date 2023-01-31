@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="../static/calendar-20/fonts/icomoon/style.css">
+  
+    <link href='../static/calendar-20/fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='../static/calendar-20/fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+    
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/calendar-20/css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="../static/calendar-20/css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+          integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <title>Calendar #10</title>
+  </head>
+  <body  style="background-color: #f7f1ed;">
+  <nav class="navbar navbar-expand-lg navbar-light  " style="background-color: #0C5A67; padding: 0;color: #f0e3db">
+    <div class="container-fluid">
+      <a class="navbar-brand " th:class="${#strings.equals(activeLink, 'Kompas')} ? 'navbar-link active p-3 fw-bold text-rest' : 'navbar-link p-3 fw-bold text-rest'" href="/home">Kompas</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item ">
+            <a class="nav-link" href="/tours" style="color: #f0e3db"  th:class="${#strings.equals(activeLink, 'Putovanja')} ? 'nav-link active p-3' : 'nav-link p-3'">Putovanja</a>
+          </li>
+          <li class="nav-item " th:if="${userDetails.getRole() == 2}">
+            <a class="nav-link" href="/users" style="color: #f0e3db"  th:class="${#strings.equals(activeLink, 'Korisnici')} ? 'nav-link active p-3' : 'nav-link p-3'">Korisnici</a>
+          </li>
+          <li class="nav-item " th:if="${userDetails.getRole() == 2}">
+            <a class="nav-link" href="/allreservations" style="color: #f0e3db"  th:class="${#strings.equals(activeLink, 'Sve rezervacije')} ? 'nav-link active p-3' : 'nav-link p-3'">Sve rezervacije</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/reservations" style="color: #f0e3db"  th:class="${#strings.equals(activeLink, 'Moje rezervacije')} ? 'nav-link active p-3' : 'nav-link p-3'">Moje rezervacije</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link p-3" href="/calendar" style="color: #f0e3db" th:class="${#strings.equals(activeLink, 'Kalendar')} ? 'nav-link active p-3' : 'nav-link p-3'" >Kalendar</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link p-3" href="/aboutus" style="color: #f0e3db"  th:class="${#strings.equals(activeLink, 'O nama')} ? 'nav-link active p-3' : 'nav-link p-3'">O nama</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav " >
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle p-3" style="color: #f0e3db" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+               th:text="${userDetails.getFullName()}" >
+            </a>
+            <ul class="dropdown-menu mt-3"  aria-labelledby="navbarDropdownMenuLink" style="background-color: #e9d6c9;">
+              <form th:action="@{/logout}" method="post">
+                <input type="submit" class="dropdown-item" style="text-align: center;background: #e9d6c9;border: 0;" value="Odjavi se!">
+                <a class="dropdown-item" style="text-align: center;background: #e9d6c9;border: 0;"  th:href="@{/profile/{id}(id=${userDetails.getId()})}">Profile </a>
+              </form>
+
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+    <div style="width: 55%; margin: 70px auto;" id='calendar-container'>
+      <div id='calendar'></div>
+    </div>
+
+  <div th:each="tour: ${listTours}" style="display: none">
+    <p th:text="${tour.id}" class="tourid"></p>
+    <p th:text="${tour.title}" class="tourtitle"></p>
+
+    <p th:text="${tour.start_date}" class="tourstart"></p>
+    <p th:text="${tour.end_date}" class="tourend"></p>
+
+  </div>
+
+
+
+    
+    
+
+    <script src="../static/calendar-20/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/calendar-20/js/popper.min.js"></script>
+    <script src="../static/calendar-20/js/bootstrap.min.js"></script>
+
+    <script src='../static/calendar-20/fullcalendar/packages/core/main.js'></script>
+    <script src='../static/calendar-20/fullcalendar/packages/interaction/main.js'></script>
+    <script src='../static/calendar-20/fullcalendar/packages/daygrid/main.js'></script>
+    <script src='../static/calendar-20/fullcalendar/packages/timegrid/main.js'></script>
+    <script src='../static/calendar-20/fullcalendar/packages/list/main.js'></script>
+
+    
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    let date = new Date().toJSON().slice(0, 10).toString();
+    var toursid = document.getElementsByClassName('tourid')
+        var tourstitle = document.getElementsByClassName('tourtitle')
+        var toursstart = document.getElementsByClassName('tourstart')
+        var toursend = document.getElementsByClassName('tourend')
+
+
+        let obj =  {
+          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+          height: 'parent',
+          header: {
+            left: 'prev,next today',
+            right: 'title'
+          },
+          defaultView: 'dayGridMonth',
+          defaultDate: date,
+          navLinks: true, // can click day/week names to navigate views
+          editable: true,
+          eventLimit: true, // allow "more" link when too many events
+          events: []
+    }
+        for (let i = 0; i<toursid.length;i++){
+          tourid = toursid[i].innerHTML;
+          let ev= {
+            title: tourstitle[i].innerHTML,
+            start: toursstart[i].innerHTML,
+            end: toursend[i].innerHTML,
+            url: `/tour/${tourid}`
+
+          }
+          obj.events.push(ev);
+        };
+
+        console.log("obj: ", obj.events)
+
+    var calendar = new FullCalendar.Calendar(calendarEl,obj);
+
+
+    //calendar.events = ;
+    console.log(calendar.events ,'OVDJE JE CAL')
+    calendar.render();
+  });
+
+    </script>
+
+    <script src="../static/calendar-20/js/main.js"></script>
+
+  <style>
+
+
+
+
+
+    .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
+      background-color: #083b44;
+      color: #ead8cc;
+    }
+    a{
+      text-decoration: none;
+      color: #f0e3db
+    }
+    .navbar-light .navbar-nav>li>a:focus, .navbar-light .navbar-nav>li>a:hover,.navbar-light .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+      color: #ead8cc;
+      background-color: #083b44;
+    }
+    .navbar-light .nav-link {
+      color: #dabaa4;
+    }
+    .navbar-light .nav-link:focus,  .navbar-light .nav-link:hover {
+      color: #ead8cc;
+      background-color: #083b44;
+    }
+    @media (min-width: 768px){
+      .navbar-nav {
+        float: left;
+        margin: 0;
+        display: inherit;}
+    }
+
+  </style>
+
+  </body>
+</html>

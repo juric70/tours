@@ -49,11 +49,19 @@
           </tr>
           <tr>
             <th scope="row">Cijena:</th>
-            <td th:text="${tour.price}"></td>
+            <td th:text="${tour.price} + ' KM'"></td>
           </tr>
           <tr>
             <th scope="row">objavljeno:</th>
             <td th:text="${tour.upload_date}"></td>
+          </tr>
+          <tr>
+            <th scope="row">Ocjena:</th>
+            <td th:text="${rating}"></td>
+          </tr>
+          <tr th:if="${rating} != 'Jos nije ocjenjeno'">
+            <th scope="row">Ocjenjeno: :</th>
+            <td th:text="${countratings} + ' korisnika su ocjenili ovo putovanje!'"></td>
           </tr>
           </tbody>
         </table>

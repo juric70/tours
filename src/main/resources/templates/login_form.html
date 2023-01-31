@@ -15,14 +15,14 @@
 <div class = "container vh-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
     <div  class="col-8 h-80" >
-        <div class="card h-100" >
-            <div class="col-12 h-50 p-5 rounded-top border-bottom-0"style=" background-image: url('https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-position: center;background-size: cover; background-repeat: no-repeat">
+        <div class="card h-100" style="border: solid 2px #0c5a67;">
+            <div class="col-12 h-50 p-5 rounded-top border-bottom-0 text-center"style=" background-image: url('https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-position: center;background-size: cover; background-repeat: no-repeat">
 
-                <h2 style="padding: 5% 0 2% 0;">Dobrodošli na našu aplikaciju za putovanja</h2>
-                <p>epoedjafkrefsverqfcerferqferwfew</p>
+                <h2 style="padding: 5% 0 2% 0; text-shadow: white 2px 2px 5px;">DOBRODOŠLI U NAŠU TURISTIČKU AGENCIJU!</h2>
+
             </div>
-            <div class="card-body text-center p-5 col-12 rounded-bottom border-top-0" style="background-color: #abced4">
-                <h2>Prijavi se!</h2>
+            <div class="card-body text-center px-5 pb-5 col-12 rounded-bottom border-top-0" style="background-color: #abced4">
+                <h2>PRIJAVITE SE!</h2>
                 <form th:action="@{/login}" th:object="${user}" method="post">
                     <div class="m-3">
                         <div th:if="${param.error}" class="alert alert-danger">Uneseni podatci nisu ispravni, molimo pokušajte ponovno!</div>

@@ -48,6 +48,15 @@ public class TourController {
                 .orElseThrow(() -> new IllegalArgumentException("Id putovanja ne postoji"));
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails =(UserDetails) authentication.getPrincipal();
+        if(tourRepository.countRatings(id)>0){
+            int rating = tourRepository.sumRaitings(id)/tourRepository.countRatings(id);
+            model.addAttribute("rating", rating);
+            int countratings = tourRepository.countRatings(id);
+            model.addAttribute("countratings", countratings);
+        }else{
+            model.addAttribute("rating", "Jos nije ocjenjeno");
+        }
+
         model.addAttribute("userDetails", userDetails);
         model.addAttribute("tour",tour );
         model.addAttribute("activeLink", "Putovanja");
@@ -125,6 +134,16 @@ public class TourController {
         tourRepository.delete(tour);
         return "redirect:/tours";
 
+    }
+    @GetMapping("/calendar")
+    public String calendarForm(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails =(UserDetails) authentication.getPrincipal();
+        List<Tour> listTours = tourRepository.findAll();
+        model.addAttribute("userDetails", userDetails);
+        model.addAttribute("activeLink", "Kalendar");
+        model.addAttribute("listTours", listTours);
+        return "calendar";
     }
 
 }

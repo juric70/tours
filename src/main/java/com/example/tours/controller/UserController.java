@@ -95,7 +95,6 @@ public class UserController {
             editUsers.setLastname(users.getLastname());
             editUsers.setGender(users.getGender());
             editUsers.setDateOfBirth(users.getDateOfBirth());
-            editUsers.setRoleId(1);
             editUsers.setDeleted(false);
             userRepository.save(editUsers);
             return "redirect:/profile/{id}";
@@ -158,6 +157,14 @@ public class UserController {
 
         userRepository.delete(users);
         return "redirect:/users";
+    }
+    @GetMapping("/aboutus")
+    public String aboutusForm(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails =(UserDetails) authentication.getPrincipal();
+        model.addAttribute("userDetails", userDetails);
+        model.addAttribute("activeLink", "O nama");
+        return "about_us";
     }
 
 

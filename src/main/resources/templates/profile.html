@@ -23,12 +23,15 @@
 <div layout:fragment="content">
 <div class="container">
   <div class="row d-flex  h-100" >
-    <div class="card col-12 h-100 p-5 my-5 " >
-      <div id="profileImg" class="text-center">
-        <img src="" class="img-thumbnail rounded-circle" alt="" style="background-color: #083b44; width: 200px; height: 200px;">
-      </div>
+    <div class="card col-6 h-100 p-5 my-5 " style="margin: auto" >
+
       <div id="profileData">
         <form th:action="@{/tour/{id}(id=${users.getId()})}" th:object="${users}" method="post">
+          <div id="profileImg" class="text-center">
+            <img th:if="${users.getGender()} == 'Woman'" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" class="img-thumbnail rounded-circle" alt="" style="background-color: #083b44; width: 200px; height: 200px;">
+            <img th:unless="${users.getGender()} == 'Woman'" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="img-thumbnail rounded-circle" alt="" style="background-color: #083b44; width: 200px; height: 200px;">
+
+          </div>
           <table class="table">
             <tbody>
             <tr>

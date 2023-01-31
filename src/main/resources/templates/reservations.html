@@ -30,7 +30,7 @@
       <th>Lokacija</th>
       <th>Polazak - povratak</th>
       <th>Datum rezervacije</th>
-      <th class="text-center"  >Akcije</th>
+      <th class="text-center" colspan="2" >Akcije</th>
     </tr>
     </thead>
     <tbody>
@@ -43,6 +43,7 @@
       <td th:text="${reservation.tour.getStart_date() + ' - ' + reservation.tour.getEnd_date()}"></td>
       <td th:text="${reservation.reservation_date}"></td>
       <td   class="text-center"><a class="btn text-center " th:href="@{/reservation/delete/{id}(id=${reservation.id})}"  onclick="return confirm('Jeste li sigurni da želite izbrisati rezervaciju?')"><i class="fa-solid fa-trash"></i></a></td>
+      <td   class="text-center"><a class="btn text-center " th:href="@{/reservation/edit/{id}(id=${reservation.id})}"  ><i class=" fa-solid fa-pen-to-square"></i></a></td>
 
     </tr>
     </tbody>

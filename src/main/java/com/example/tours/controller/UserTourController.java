@@ -15,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserTourController {
@@ -70,7 +72,38 @@ public class UserTourController {
 
     }
 
+    @GetMapping("reservation/edit/{id}")
+    public String editReservationForm(@PathVariable("id") long id, Model model){
+        UserTour userTour = userTourRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Rezervacija ne postoji"));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails =(UserDetails) authentication.getPrincipal();
+        model.addAttribute("userDetails", userDetails);
+        model.addAttribute("userTour",userTour );
+        model.addAttribute("activeLink", "Moje rezervacije");
+        return "edit_reservation";
+    }
 
+    @PostMapping("reservation/update/{id}")
+    public String editReservation(@PathVariable("id") long id, UserTour userTour, BindingResult result, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails =(UserDetails) authentication.getPrincipal();
+
+        Optional<UserTour> optionalReservations = userTourRepository.findById(id);
+
+        if (optionalReservations.isPresent()) {
+            UserTour editReservation = optionalReservations.get();
+            editReservation.setRating(userTour.getRating());
+            userTourRepository.save(editReservation);
+            return "redirect:/reservations";
+        } else {
+            model.addAttribute("userDetails", userDetails);
+            model.addAttribute("activeLink","Moje rezervacije");
+            model.addAttribute("userTour",userTour);
+            return "edit_reservation";
+        }
+    }
 
 
 }

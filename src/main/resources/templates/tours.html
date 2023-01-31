@@ -42,7 +42,7 @@
             <td th:text="${tour.description}">Opis</td>
             <td th:text="${tour.start_date}">Datum polaska</td>
             <td th:text="${tour.end_date}">Datum povratka</td>
-            <td th:text="${tour.price}">Cijena putovanja</td>
+            <td th:text="${tour.price} + ' KM'">Cijena putovanja</td>
             <td th:text="${tour.upload_date}">Datum objave</td>
             <td th:text="${tour.creator.getFullname()}">Kreator objave</td>
 
