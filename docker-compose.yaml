@@ -1,13 +1,13 @@
 version: '3.7'
 services:
-  bookstore:
+  tour-agency:
     container_name: touragency
     build: .
     image: touragency:latest
     ports:
       - 8080:8080
     networks:
-      - touragency-network
+      - tours-network
     depends_on:
       - mysql
   mysql:
@@ -16,13 +16,20 @@ services:
     networks:
       - tours-network
     environment:
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=lozinka
       - MYSQL_ROOT_PASSWORD=lozinka
       - MYSQL_DATABASE=travelagency
+    ports:
+      - '6306:3306'
+    expose:
+      - '6306'
     volumes:
       - mysql-data:/var/lib/mysql
     restart: always
+
 volumes:
   mysql-data:
 networks:
-  bookstore-network:
+  tours-network:
     driver: bridge

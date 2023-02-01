@@ -12,4 +12,4 @@ RUN mvn -f /home/app/pom.xml clean package -DskipTests
 FROM openjdk:18-jdk-slim
 COPY --from=build /home/app/target/tours-0.0.1-SNAPSHOT.jar /usr/local/lib/touragency.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/touragency.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=docker", "-jar","/usr/local/lib/touragency.jar"]
